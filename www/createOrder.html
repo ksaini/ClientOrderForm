@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+   
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
+<script src="js/moment.min.js"></script>   
+<script src="js/jquery-1.10.2.js"></script>
+<script src="./assets/js/bootstrap.min.js"></script>
+<script src="./assets/js/bootstrap-datetimepicker.min.js"></script>
+
+<link href="assets/css/font-awesome.min.css" rel="stylesheet">
+	
+	
+	
+    <title>Create New Orders</title>
+	<style>
+	
+	.container-fluid {
+		padding-right: 0px;
+		padding-left: 0px;
+	}
+	
+.col-xs-1,
+.col-xs-10,
+.col-xs-11,
+.col-xs-12,
+.col-xs-2,
+.col-xs-3,
+.col-xs-4,
+.col-xs-5,
+.col-xs-6,
+.col-xs-7,
+.col-xs-8,
+.col-xs-9 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+.container-fluid>.navbar-collapse,
+.container-fluid>.navbar-header,
+.container>.navbar-collapse,
+.container>.navbar-header {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+.nav>li>a {
+    position: relative;
+    display: block;
+    padding: 10px 5px
+}
+.card .content {
+    padding: 10px 10px 5px 5px; }
+	
+body {
+	text-transform:inherit;
+	
+}
+.chat
+{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.chat li
+{
+    margin-bottom: 12px;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted #B3A9A9;
+}
+
+.chat li.left .chat-body
+{
+    margin-left: 60px;
+	font-size:12px;
+}
+.chat-body1
+{
+	margin-left: 15px;
+	font-size:9px;
+}
+.chat li.right .chat-body
+{
+    margin-right: 60px;
+	font-size:12px;
+	
+}
+
+
+.chat li .chat-body p
+{
+    margin: 0;
+	width:100%;
+    color: #777777;
+}
+
+.panel .slidedown .glyphicon, .chat .glyphicon
+{
+    margin-right: 5px;
+}
+
+.panel-body
+{
+  #  overflow-y: scroll;
+	min-height: 530px;
+    height: 100%;
+}
+
+::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+.stickyfooter {
+  position: fixed;
+  bottom:0;
+}
+.panel-body
+{
+    overflow-y: scroll;
+	min-height: 560px;
+    height: 100%;
+	padding-top: 50px;
+}
+.panel-footer{
+	padding: 1px 5px;
+}
+::-webkit-scrollbar
+{
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+}	
+.circleBase {
+    border-radius: 50%;
+	text-align:center;
+	vertical-align:middle;
+}
+.type1 {
+    width: 40px;
+    height: 40px;
+    color:white;
+    padding-top:10px;
+}
+.stickyfooter {
+  position: fixed;
+  bottom:2px;
+  padding-top:0px;
+  padding-bottom:0px;
+}
+.gbhide {
+	display:none;
+}
+.stock {
+-webkit-transition: -webkit-transform .8s ease-in-out;
+transition:         transform .8s ease-in-out;	 
+
+}
+.stock:click {
+ -webkit-transform: rotateX(360deg);
+ transform: rotateX(360deg);
+}
+.markallocate {
+padding-right: 10px;
+text-decoration-style: double;
+text-decoration :line-through;
+color:red;
+}
+
+.ordr {
+	padding-right: 10px;
+	color: #e38d13;
+}
+.icon-bar {
+    width: 100%; /* Full-width */
+    overflow: hidden;
+	background-color:#f5f5f5;
+	height:50px;
+	padding-bottom:1px;
+	color:#BFBFBF;
+	text-align:center;
+}
+.icon-def {
+	
+	border-left: 1px dotted #BDC3C7;
+	padding-left:10px;
+	border-right: 1px dotted #BDC3C7;
+	padding-right:10px;
+	padding-top:4px;
+	float: left;
+	font-size:28px;	
+}
+.icontitle {
+	font-size:7px;
+	color:#777;	
+	padding-top:3px;
+	vertical-align:text-top;
+}
+.selectedIcon {
+	color:red;
+}
+.cnf {
+color:#F4B350;
+}
+.oh{
+  padding-left:3px;
+  padding-right:15px;
+}
+.oh_tl_last{
+  padding-left:-15px;
+  padding-right:0px;
+  padding-top:2px;
+  font-size:14px;
+  font-family:Roboto,Helvetica,Arial,sans-serif;
+  
+}
+.oh_tl{
+  padding-left:-15px;
+  padding-right:0px;
+  padding-top:2px;
+  font-size:14px;
+  font-family:Roboto,Helvetica,Arial,sans-serif;
+}
+.oh_tl:before {
+
+position: absolute;
+content: "";
+width: 88%;
+height: 1px;
+background-color: #ECF0F1;
+left: 35%;
+margin-left: -20px;
+margin-top:6px;
+
+}
+.timeline-horizontal {
+list-style: none;
+position: relative;
+padding: 3px 0px 3px 0px;
+display: inline-block;
+width:100%;
+}
+.details {
+color: #484848 !important;
+font-size:10px;
+}
+.product {
+font-size:11px;
+font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+color: rgb(72, 72, 72) !important;
+letter-spacing: 0.5px !important;
+}
+.code {
+font-size:11px;
+font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+color: #008489;
+letter-spacing: 0.5px !important;
+}
+.select {
+font-size:13px;
+font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+color: #E87E04;
+text-align:center;
+letter-spacing: 0.5px !important;
+}
+	</style>
+	<script> var c=0;</script>
+</head>
+
+<body >
+
+
+<nav class="navbar navbar-inverse navbar-fixed-top" style="margin-bottom:5px;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="index.html">Home</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="index.html">&nbsp;Home</a></li>
+        <li class="dropdown">
+		  <a href="index.html" onclick="localStorage['eid']='';localStorage.setItem('ordr', '');;document.location='index.html'">&nbsp;&nbsp;Logout</a>
+        </li>
+      </ul>
+      
+    </div>
+  </div>
+</nav>
+
+<div class="content" id='mainbody'>
+	<br>
+			<div class="panel panel-default">
+                <div class="panel-heading" id='phead' style='background:#265a88;color:white;text-align:center;padding-top:40px;padding-bottom:5px;'></div>
+				<div class="panel-body">
+                    <ul class="chat" id="chat">
+                                             
+                    </ul>
+				</div>
+			</div>
+				
+	</div>
+	
+	<div class="panel-footer stickyfooter">
+                    <div class="input-group" id="panel-footer">
+                       
+                        <span class="input-group-btn">
+                            <button class="btn btn-warning btn-sm" id="assignqty" style="height:42px;width:100%" onclick="assignQty(data_item);">Assign Quantity</button>
+							<button class="btn btn-warning btn-sm gbhide" id="addmore" style="height:42px;width:50%" onclick="showProducts(data_item);">Add More</button>
+							<button class="btn btn-warning btn-sm gbhide" id="placeorder" style="height:42px;width:50%" onclick="placeorder(data_item);">Place Order</button>
+                        </span>
+                    </div>
+                </div>
+</div>	
+
+</div>
+</body>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/dataTbl.js"></script>
+
+<script>
+	var data_item = {};
+	var order = {};
+	getProducts();	
+	document.getElementById("chat").innerHTML = "";
+	
+	function custom(data){
+		data_item = data;
+		showProducts(data);
+	}
+	
+	function getProducts(){
+		getData('','',"SELECT id,name, code,unit from t_item_tbl ;",0,0,101);
+	}
+	
+	function errHndlr(){
+	
+	}
+	
+	function formatDateY(dt){
+	if(dt == null) return "Sending..";
+	try{
+		var dateObj = new Date(dt);
+		var month = dateObj.getMonth() + 1; //months from 1-12
+		var day = dateObj.getDate();
+		var m = dateObj.getMinutes();
+		
+			newdate =  getM(month) + " " + day + " " ;
+				
+		return newdate;
+	} catch(e){return dt;}
+}
+
+
+function getM(m){
+ if(m==1)
+ 	return "Jan";
+ else if(m==2)
+    return "Feb";
+ else if(m==3)
+    return "Mar"; 
+ else if(m==4)
+    return "Apr";  
+ else if(m==5)
+    return "May"; 
+ else if(m==6)
+    return "Jun";   
+ else if(m==7)
+    return "Jul"; 
+ else if(m==8)
+    return "Aug";  
+ else if(m==9)
+    return "Sep";  
+ else if(m==10)
+    return "Oct"; 
+ else if(m==11)
+    return "Nov";
+ else if(m==12)
+    return "Dec";     
+
+}
+
+
+function formateDt(dt){
+   var date = new Date(dt);
+	var day = date.getDate();
+  var monthIndex = date.getMonth() + 1;
+  var year = date.getFullYear();
+  
+  if(monthIndex < 10)
+	monthIndex = "0" + monthIndex;
+  if(day < 10)
+	day = "0" + day;		
+  
+  return year+"-"+monthIndex+"-"+day;
+}
+
+function noOrdrMsg(){
+	var chat = document.getElementById("chat");
+	chat.innerHTML = "";
+	var msg = "";
+		msg += "<div class='chat-body clearfix'>";
+		msg += "<span class='text-muted col-xs-9' style='font-size:14px;text-align:center;'>No Products in this Category</span></div>";
+		chat.innerHTML = msg;
+}
+
+function showProducts(data){
+document.getElementById("assignqty").classList.remove('gbhide');
+document.getElementById("addmore").classList.add('gbhide');
+document.getElementById("placeorder").classList.add('gbhide');
+document.getElementById("phead").innerHTML = "<b>Select Product(s)</b>";
+	var chat = document.getElementById("chat");
+	chat.innerHTML = "";
+		var msg = "";
+				
+		for (var i = 0; i < data.length; i++) {
+			var id = data[i]['id'] ;		
+			
+			msg += "<li id='m_"+data[i]['id']+"' class='left clearfix' style='margin-top:-12px;margin-left:-12px;margin-right:-12px; padding-top:10px;'>";
+			msg += "<div class='row' style='margin-left:4px;margin-right:4px;'>";
+			msg += "<div class='col-xs-1 product' >" + data[i]['id'] + "</div>";
+			msg += "<div class='col-xs-3 code' >" + data[i]['code'] + "</div>";
+			msg += "<div class='col-xs-5 product' >" + data[i]['name'] + "</div>";
+			msg += "<div class='col-xs-1 details' onclick='moredetails("+data[i]['id']+")'><i class='fa fa-angle-down' style='font-size:24px;color:rgb(72, 72, 72);'></i></div>";
+			msg += "<div class='col-xs-2 select' id='sel_"+data[i]['id']+"' onclick=selectIt("+data[i]['id']+")>Select</div>";
+			msg += "</div>";
+						
+			msg += "</li>";
+		}
+		chat.innerHTML = msg;	
+}
+
+function moredetails(id){
+	var alldetails = document.getElementsByName("moredetails");
+	for (var i = 0; i < alldetails.length; i++) {
+		alldetails[i].classList.add("gbhide");
+	}
+	
+
+    var d = '{"deisity":"1.2mg/cc","color":"bright white","packaging": "new logo","moisture":"<1%"}';
+	var chat = document.getElementById("m_" +  id);
+	var element = document.getElementById('details_'+ id);
+	
+	if (typeof(element) != 'undefined' && element != null)
+		document.getElementById('details_'+ id).classList.remove("gbhide");
+	else	
+		chat.innerHTML += showProdDetails(d,id);
+	
+}
+
+function getProdDetails(id,data){
+	for (var i = 0; i < data.length; i++) {
+		if(id == data[i]['id'])
+		   return data[i]['details'];
+	}
+	
+	return "";
+	
+}
+function showProdDetails(d,id){
+	var data = {};
+	var msg = "";
+	try{ data = JSON.parse(d);} catch (e) {}
+	
+	msg += "<div name='moredetails' id='details_"+id+"' class='row' style='margin-left:4px;margin-right:4px;padding-top:10px;padding-left:15px;line-height: 12px !important;'>";
+	 for (var key in data){
+		msg += "<div class='col-xs-4 product' style='padding-bottom:15px;' ><b class='code'>" + key + " </b><br> " + data[key] + "</div>"; 
+	 }
+	 msg += "</div>";
+	 
+	 return msg;
+}
+
+function selectIt(id){
+	
+	var ele = document.getElementById('m_'+ id);
+	if(ele.style.backgroundColor == "rgb(221, 221, 221)")
+	{
+		ele.style.backgroundColor = "white";
+		delete order[id];
+	}
+	else
+		{
+		ele.style.backgroundColor = "#ddd";
+		order[id] = id;
+		}
+}
+
+function assignQty(data){
+
+document.getElementById("assignqty").classList.add('gbhide');
+document.getElementById("addmore").classList.remove('gbhide');
+document.getElementById("placeorder").classList.remove('gbhide');
+
+document.getElementById("phead").innerHTML = "<b>Select Quantity</b>";
+	var chat = document.getElementById("chat");
+	chat.innerHTML = "";
+		var msg = "";
+				
+		for (var i = 0; i < data.length; i++) {
+			var id = data[i]['id'] ;		
+			if (typeof(order[id]) != 'undefined' && order[id] != null){
+			msg += "<li id='m_"+data[i]['id']+"' class='left clearfix' style='margin-top:-12px;margin-left:-12px;margin-right:-12px; padding-top:10px;'>";
+			msg += "<div class='row' style='margin-left:4px;margin-right:4px;'>";
+			msg += "<div class='col-xs-1 product' >" + data[i]['id'] + "</div>";
+			msg += "<div class='col-xs-2 code' id='ii"+i+"' >" + data[i]['code'] + "</div>";
+			msg += "<div class='col-xs-5 product' >" + data[i]['name'] + "</div>";
+			msg += "<div class='col-xs-2 details' id='qq"+i+"' contenteditable=true style='background-color:#FDE3A7;height:20px;font-size:12px;text-align:center;'>0</div>";
+			msg += "<div class='col-xs-1 product' style='text-align:center;' >Ton</div>";
+			msg += "<div class='col-xs-1 product' style='text-align:center;color:red;' onclick= removeItem("+id+") ><i class='fa fa-trash' aria-hidden='true'></i></div>";
+			msg += "</div>";
+						
+			msg += "</li>";
+			}
+		}
+		chat.innerHTML = msg;	
+
+}
+
+function removeItem(id){
+	delete order[id];
+	assignQty(data_item);
+}
+
+function placeorder(data){
+
+	// get order details
+	var final_ordr = [];
+	for (var i = 0; i < data.length; i++) {
+		var id = data[i]['id'] ;		
+		if (typeof(order[id]) != 'undefined' && order[id] != null){
+			final_ordr.push({ 
+				"item" : document.getElementById('ii'+i).innerHTML,
+				"qty"  : document.getElementById('qq'+i).innerHTML,
+				"price"       : "0" 
+		});
+		}		
+	}		
+  
+    var did = 731068;
+	var q = "discussion= &order=" + JSON.stringify(final_ordr) + "&visit=&lat=0&long=0&did=" + did + "&agent=0";
+	var req = new XMLHttpRequest();
+	req.onreadystatechange = function() {
+		if (req.readyState == 4 && req.status == 200) {
+			alert(req.responseText);
+			//if(req.responseText.length < 15)
+			if(req.responseText.trim()== "Success"){
+				document.getElementById('mainbody').innerHTML = "<p style='font-size:38px;color:#4CAF50;text-align:center;margin-top:200px;'>Success</p><br><p class='text-muted' style='line-height:1.0;text-align:center'><small>Meeting record saved!!</small></p>";
+								
+				}
+			else	
+				alert(req.responseText);
+			}
+		
+		};
+		//var base_url = "http://theqalabs.com/track/";
+		req.open("POST", base_url + "/saveMeeting.php", true);
+		req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		req.send(q);
+  
+  
+}
+</script>
+
+
+ 
+</html>
