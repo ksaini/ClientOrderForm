@@ -325,9 +325,9 @@ letter-spacing: 0.5px !important;
                     <div class="input-group" id="panel-footer">
                        
                         <span class="input-group-btn">
-                            <button class="btn btn-warning btn-sm" id="assignqty" style="height:42px;width:100%" onclick="assignQty(data_item);">Assign Quantity</button>
-							<button class="btn btn-warning btn-sm gbhide" id="addmore" style="height:42px;width:50%" onclick="showProducts(data_item);">Add More</button>
-							<button class="btn btn-warning btn-sm gbhide" id="placeorder" style="height:42px;width:50%" onclick="placeorder(data_item);">Place Order</button>
+                            <button class="btn btn-sm" id="assignqty" style="height:42px;width:100%;background-Color:#265a88;color:white;" onclick="assignQty(data_item);">Assign Quantity</button>
+							<button class="btn  btn-sm gbhide" id="addmore" style="height:42px;width:50%;background-Color:#265a88;color:white;padding:left:5px;" onclick="showProducts(data_item);">Add More</button>
+							<button class="btn  btn-sm gbhide" id="placeorder" style="height:42px;width:50%;background-Color:#265a88;color:white;padding-right:5px;" onclick="placeorder(data_item);">Place Order</button>
                         </span>
                     </div>
                 </div>
@@ -351,7 +351,7 @@ letter-spacing: 0.5px !important;
 	}
 	
 	function getProducts(){
-		getData('','',"SELECT id,name, code,unit from t_item_tbl ;",0,0,101);
+		getData('','',"SELECT id,dname as name, dcode as code,unit,info from t_item_tbl ;",0,0,101);
 	}
 	
 	function errHndlr(){
@@ -435,14 +435,19 @@ document.getElementById("phead").innerHTML = "<b>Select Product(s)</b>";
 		var msg = "";
 				
 		for (var i = 0; i < data.length; i++) {
-			var id = data[i]['id'] ;		
+			var id = data[i]['id'] ;
+			var info = 	JSON.stringify(data[i]['info']) ;
+			
+			if(info==null)
+				info= '{}';
+			
 			
 			msg += "<li id='m_"+data[i]['id']+"' class='left clearfix' style='margin-top:-12px;margin-left:-12px;margin-right:-12px; padding-top:10px;'>";
 			msg += "<div class='row' style='margin-left:4px;margin-right:4px;'>";
 			msg += "<div class='col-xs-1 product' >" + data[i]['id'] + "</div>";
 			msg += "<div class='col-xs-3 code' >" + data[i]['code'] + "</div>";
 			msg += "<div class='col-xs-5 product' >" + data[i]['name'] + "</div>";
-			msg += "<div class='col-xs-1 details' onclick='moredetails("+data[i]['id']+")'><i class='fa fa-angle-down' style='font-size:24px;color:rgb(72, 72, 72);'></i></div>";
+			msg += "<div class='col-xs-1 details' onclick=moredetails("+id+","+info+")><i class='fa fa-angle-down' style='font-size:24px;color:rgb(72, 72, 72);'></i></div>";
 			msg += "<div class='col-xs-2 select' id='sel_"+data[i]['id']+"' onclick=selectIt("+data[i]['id']+")>Select</div>";
 			msg += "</div>";
 						
@@ -451,14 +456,15 @@ document.getElementById("phead").innerHTML = "<b>Select Product(s)</b>";
 		chat.innerHTML = msg;	
 }
 
-function moredetails(id){
+function moredetails(id,info){
 	var alldetails = document.getElementsByName("moredetails");
 	for (var i = 0; i < alldetails.length; i++) {
 		alldetails[i].classList.add("gbhide");
 	}
 	
-
+//	alert(JSON.stringify(info));
     var d = '{"deisity":"1.2mg/cc","color":"bright white","packaging": "new logo","moisture":"<1%"}';
+	d=info;
 	var chat = document.getElementById("m_" +  id);
 	var element = document.getElementById('details_'+ id);
 	
@@ -481,7 +487,7 @@ function getProdDetails(id,data){
 function showProdDetails(d,id){
 	var data = {};
 	var msg = "";
-	try{ data = JSON.parse(d);} catch (e) {}
+	try{ data = JSON.parse(d); data=data[0];} catch (e) {}
 	
 	msg += "<div name='moredetails' id='details_"+id+"' class='row' style='margin-left:4px;margin-right:4px;padding-top:10px;padding-left:15px;line-height: 12px !important;'>";
 	 for (var key in data){
@@ -527,7 +533,7 @@ document.getElementById("phead").innerHTML = "<b>Select Quantity</b>";
 			msg += "<div class='col-xs-2 code' id='ii"+i+"' >" + data[i]['code'] + "</div>";
 			msg += "<div class='col-xs-5 product' >" + data[i]['name'] + "</div>";
 			msg += "<div class='col-xs-2 details' id='qq"+i+"' contenteditable=true style='background-color:#FDE3A7;height:20px;font-size:12px;text-align:center;'>0</div>";
-			msg += "<div class='col-xs-1 product' style='text-align:center;' >Ton</div>";
+			msg += "<div class='col-xs-1 product' style='text-align:center;' >" + data[i]['unit'] + "</div>";
 			msg += "<div class='col-xs-1 product' style='text-align:center;color:red;' onclick= removeItem("+id+") ><i class='fa fa-trash' aria-hidden='true'></i></div>";
 			msg += "</div>";
 						
@@ -535,7 +541,6 @@ document.getElementById("phead").innerHTML = "<b>Select Quantity</b>";
 			}
 		}
 		chat.innerHTML = msg;	
-
 }
 
 function removeItem(id){
