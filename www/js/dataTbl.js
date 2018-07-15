@@ -6,11 +6,14 @@ var base_url = "http://theqalabs.com/track/";
 base_url = "http://greyboxerp.com/track/";
 
 
-function schoolDetails(data){
-	schoolname = data[0]['name'];
-	address = data[0]['address'];
-	scn1 = data[0]['cn1'];
-	
+function TrackOrder(){
+	window.location.href = "trackorder.html";
+}
+function CreateOrder(){
+	window.location.href = "createOrder.html";
+}
+function GoHome(){
+	window.location.href = "index.html";
 }
 function donothing(a,b){}
 
@@ -266,37 +269,6 @@ function getElementValue(id){
 }
 
 
-function filterTbl(inputElementId,tblId,flg){
-	// if field is input use flg=0 if dropdown flg=1
-  // Declare variables 
-  var input, filter, table, tr, td, i;
-  input = document.getElementById(inputElementId);
-
-  filterid = input.value.toUpperCase();
-  if(flg==0)
-	filter = document.getElementById(filterid).innerHTML.toUpperCase();
-  else
-	filter = filterid;
-  table = document.getElementById(tblId);
-  tr = table.getElementsByTagName("tr");
-	//alert(filter);
-
-  // Loop through all table rows, and hide those who don't match the search query
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[1];
-    if (td) {
-      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    } 
-  }
-
-}
-
-
-
 function postData(q,msg) {
 	 
 	var sql = "q=" + q;
@@ -465,80 +437,6 @@ function saveTblData(tbl,c,t,f){
 	c1.appendChild(newText);
 }
 
-function sendSMS(mobile,msg){
-	var param = "msg=" + msg;
-	//alert(param);
-	var req = new XMLHttpRequest();
-	req.onreadystatechange = function() {
-		if (req.readyState == 4 && req.status == 200) {
-			try {
-				//smsCallback(req.responseText);
-			} catch (e) {
-				console.log("Exception::-"+e.toString());
-			}
-		}
-	};
-		
-	req.open("GET", base_url + "/sms.php?" + param, true);
-	req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	req.send();
-}
-
-function endOfLastMonth(){
-	var x = new Date();
-	x.setDate(1);
-	
-	var m = x.getMonth();
-	var y = x.getFullYear();
-	var max_days = new Date(y, m, 0).getDate();
-	// again increment month to go to current month and year
-	x.setMonth(x.getMonth()-1);
-	m = x.getMonth();
-	y = x.getFullYear();
-			
-	var local = new Date(y,m,max_days);
-		
-    local.setMinutes(local.getMinutes() - local.getTimezoneOffset());
-    return local.toJSON().slice(0,10);
-}
-
-function taskList(agentid,start){
-	 var sIndex = 0, offSet = 10, isPreviousEventComplete = true, isDataAvailable = true;
-	 var param = "";
-	 if(agentid==0)
-		 param = "start=" + start;
-	 else
-		param = "agentid=" + agentid + "&start=" + start;
-	
-	var req = new XMLHttpRequest();
-	req.onreadystatechange = function() {
-		if (req.readyState == 4 && req.status == 200) {
-			try {
-				var dataArray=JSON.parse(req.responseText);
-				custom(dataArray,102);
-			} catch (e) {
-				console.log("Exception::-"+e.toString());
-			}
-		}
-	};
-		
-	req.open("GET", base_url + "/listTask.php?" + param, true);
-	req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	req.send();
-    
-}
-
-function formatDate(dt){
-	try{
-		var dateObj = new Date(dt);
-		var month = dateObj.getUTCMonth() + 1; //months from 1-12
-		var day = dateObj.getUTCDate();
-		var year = dateObj.getUTCFullYear();
-
-		newdate =  getM(month) + " " + day + ", " + year;
-		return newdate;
-	} catch(e){return dt;}
-}
 
 function getM(m){
  if(m==1)
@@ -566,4 +464,19 @@ function getM(m){
  else if(m==12)
     return "Dec";     
 
+}
+
+
+function formateDt(dt){
+   var date = new Date(dt);
+	var day = date.getDate();
+  var monthIndex = date.getMonth() + 1;
+  var year = date.getFullYear();
+  
+  if(monthIndex < 10)
+	monthIndex = "0" + monthIndex;
+  if(day < 10)
+	day = "0" + day;		
+  
+  return year+"-"+monthIndex+"-"+day;
 }

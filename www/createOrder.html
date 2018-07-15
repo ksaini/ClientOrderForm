@@ -7,279 +7,20 @@
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
-   
 
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/bootstrap-theme.min.css" rel="stylesheet">
-<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+	<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+	<link href="css/createorder.css" rel="stylesheet">
 
-<script src="js/moment.min.js"></script>   
-<script src="js/jquery-1.10.2.js"></script>
-<script src="./assets/js/bootstrap.min.js"></script>
-<script src="./assets/js/bootstrap-datetimepicker.min.js"></script>
+	<script src="js/moment.min.js"></script>   
+	<script src="js/jquery-1.10.2.js"></script>
+	<script src="./assets/js/bootstrap.min.js"></script>
+	<script src="./assets/js/bootstrap-datetimepicker.min.js"></script>
 
-<link href="assets/css/font-awesome.min.css" rel="stylesheet">
-	
-	
+	<link href="assets/css/font-awesome.min.css" rel="stylesheet">
 	
     <title>Create New Orders</title>
-	<style>
-	
-	.container-fluid {
-		padding-right: 0px;
-		padding-left: 0px;
-	}
-	
-.col-xs-1,
-.col-xs-10,
-.col-xs-11,
-.col-xs-12,
-.col-xs-2,
-.col-xs-3,
-.col-xs-4,
-.col-xs-5,
-.col-xs-6,
-.col-xs-7,
-.col-xs-8,
-.col-xs-9 {
-    position: relative;
-    min-height: 1px;
-    padding-right: 0px;
-    padding-left: 0px;
-}
-.container-fluid>.navbar-collapse,
-.container-fluid>.navbar-header,
-.container>.navbar-collapse,
-.container>.navbar-header {
-    margin-right: 0px;
-    margin-left: 0px;
-}
-.nav>li>a {
-    position: relative;
-    display: block;
-    padding: 10px 5px
-}
-.card .content {
-    padding: 10px 10px 5px 5px; }
-	
-body {
-	text-transform:inherit;
-	
-}
-.chat
-{
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.chat li
-{
-    margin-bottom: 12px;
-    padding-bottom: 5px;
-    border-bottom: 1px dotted #B3A9A9;
-}
-
-.chat li.left .chat-body
-{
-    margin-left: 60px;
-	font-size:12px;
-}
-.chat-body1
-{
-	margin-left: 15px;
-	font-size:9px;
-}
-.chat li.right .chat-body
-{
-    margin-right: 60px;
-	font-size:12px;
-	
-}
-
-
-.chat li .chat-body p
-{
-    margin: 0;
-	width:100%;
-    color: #777777;
-}
-
-.panel .slidedown .glyphicon, .chat .glyphicon
-{
-    margin-right: 5px;
-}
-
-.panel-body
-{
-  #  overflow-y: scroll;
-	min-height: 530px;
-    height: 100%;
-}
-
-::-webkit-scrollbar-track
-{
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    background-color: #F5F5F5;
-}
-.stickyfooter {
-  position: fixed;
-  bottom:0;
-}
-.panel-body
-{
-    overflow-y: scroll;
-	min-height: 560px;
-    height: 100%;
-	padding-top: 50px;
-}
-.panel-footer{
-	padding: 1px 5px;
-}
-::-webkit-scrollbar
-{
-    width: 12px;
-    background-color: #F5F5F5;
-}
-
-::-webkit-scrollbar-thumb
-{
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-    background-color: #555;
-}	
-.circleBase {
-    border-radius: 50%;
-	text-align:center;
-	vertical-align:middle;
-}
-.type1 {
-    width: 40px;
-    height: 40px;
-    color:white;
-    padding-top:10px;
-}
-.stickyfooter {
-  position: fixed;
-  bottom:2px;
-  padding-top:0px;
-  padding-bottom:0px;
-}
-.gbhide {
-	display:none;
-}
-.stock {
--webkit-transition: -webkit-transform .8s ease-in-out;
-transition:         transform .8s ease-in-out;	 
-
-}
-.stock:click {
- -webkit-transform: rotateX(360deg);
- transform: rotateX(360deg);
-}
-.markallocate {
-padding-right: 10px;
-text-decoration-style: double;
-text-decoration :line-through;
-color:red;
-}
-
-.ordr {
-	padding-right: 10px;
-	color: #e38d13;
-}
-.icon-bar {
-    width: 100%; /* Full-width */
-    overflow: hidden;
-	background-color:#f5f5f5;
-	height:50px;
-	padding-bottom:1px;
-	color:#BFBFBF;
-	text-align:center;
-}
-.icon-def {
-	
-	border-left: 1px dotted #BDC3C7;
-	padding-left:10px;
-	border-right: 1px dotted #BDC3C7;
-	padding-right:10px;
-	padding-top:4px;
-	float: left;
-	font-size:28px;	
-}
-.icontitle {
-	font-size:7px;
-	color:#777;	
-	padding-top:3px;
-	vertical-align:text-top;
-}
-.selectedIcon {
-	color:red;
-}
-.cnf {
-color:#F4B350;
-}
-.oh{
-  padding-left:3px;
-  padding-right:15px;
-}
-.oh_tl_last{
-  padding-left:-15px;
-  padding-right:0px;
-  padding-top:2px;
-  font-size:14px;
-  font-family:Roboto,Helvetica,Arial,sans-serif;
-  
-}
-.oh_tl{
-  padding-left:-15px;
-  padding-right:0px;
-  padding-top:2px;
-  font-size:14px;
-  font-family:Roboto,Helvetica,Arial,sans-serif;
-}
-.oh_tl:before {
-
-position: absolute;
-content: "";
-width: 88%;
-height: 1px;
-background-color: #ECF0F1;
-left: 35%;
-margin-left: -20px;
-margin-top:6px;
-
-}
-.timeline-horizontal {
-list-style: none;
-position: relative;
-padding: 3px 0px 3px 0px;
-display: inline-block;
-width:100%;
-}
-.details {
-color: #484848 !important;
-font-size:10px;
-}
-.product {
-font-size:11px;
-font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
-color: rgb(72, 72, 72) !important;
-letter-spacing: 0.5px !important;
-}
-.code {
-font-size:11px;
-font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
-color: #008489;
-letter-spacing: 0.5px !important;
-}
-.select {
-font-size:13px;
-font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
-color: #E87E04;
-text-align:center;
-letter-spacing: 0.5px !important;
-}
-	</style>
 	<script> var c=0;</script>
 </head>
 
@@ -300,7 +41,7 @@ letter-spacing: 0.5px !important;
       <ul class="nav navbar-nav">
         <li class="active"><a href="index.html">&nbsp;Home</a></li>
         <li class="dropdown">
-		  <a href="index.html" onclick="localStorage['eid']='';localStorage.setItem('ordr', '');;document.location='index.html'">&nbsp;&nbsp;Logout</a>
+		  <a href="login.html" onclick="localStorage.clear();document.location='login.html'">&nbsp;&nbsp;Logout</a>
         </li>
       </ul>
       
@@ -325,9 +66,9 @@ letter-spacing: 0.5px !important;
                     <div class="input-group" id="panel-footer">
                        
                         <span class="input-group-btn">
-                            <button class="btn btn-sm" id="assignqty" style="height:42px;width:100%;background-Color:#265a88;color:white;" onclick="assignQty(data_item);">Assign Quantity</button>
-							<button class="btn  btn-sm gbhide" id="addmore" style="height:42px;width:50%;background-Color:#265a88;color:white;padding:left:5px;" onclick="showProducts(data_item);">Add More</button>
-							<button class="btn  btn-sm gbhide" id="placeorder" style="height:42px;width:50%;background-Color:#265a88;color:white;padding-right:5px;" onclick="placeorder(data_item);">Place Order</button>
+                            <button class="btn btn-sm" id="assignqty" style="height:42px;width:98%;background-Color:#265a88;color:white;border-radius: 5%;" onclick="assignQty(data_item);">Assign Quantity</button>
+							<button class="btn  btn-sm gbhide" id="addmore" style="height:42px;width:50%;background-Color:#265a88;color:white;margin-left:2px;border-radius: 5%;" onclick="showProducts(data_item);">Add More</button>
+							<button class="btn  btn-sm gbhide" id="placeorder" style="height:42px;width:48%;background-Color:#265a88;color:white;margin-right:2px;margin-left:5px;border-radius: 5%;" onclick="placeorder(data_item);">Place Order</button>
                         </span>
                     </div>
                 </div>
@@ -351,7 +92,7 @@ letter-spacing: 0.5px !important;
 	}
 	
 	function getProducts(){
-		getData('','',"SELECT id,dname as name, dcode as code,unit,info from t_item_tbl ;",0,0,101);
+		getData('','',"item_list_02",0,0,101);
 	}
 	
 	function errHndlr(){
@@ -372,49 +113,6 @@ letter-spacing: 0.5px !important;
 	} catch(e){return dt;}
 }
 
-
-function getM(m){
- if(m==1)
- 	return "Jan";
- else if(m==2)
-    return "Feb";
- else if(m==3)
-    return "Mar"; 
- else if(m==4)
-    return "Apr";  
- else if(m==5)
-    return "May"; 
- else if(m==6)
-    return "Jun";   
- else if(m==7)
-    return "Jul"; 
- else if(m==8)
-    return "Aug";  
- else if(m==9)
-    return "Sep";  
- else if(m==10)
-    return "Oct"; 
- else if(m==11)
-    return "Nov";
- else if(m==12)
-    return "Dec";     
-
-}
-
-
-function formateDt(dt){
-   var date = new Date(dt);
-	var day = date.getDate();
-  var monthIndex = date.getMonth() + 1;
-  var year = date.getFullYear();
-  
-  if(monthIndex < 10)
-	monthIndex = "0" + monthIndex;
-  if(day < 10)
-	day = "0" + day;		
-  
-  return year+"-"+monthIndex+"-"+day;
-}
 
 function noOrdrMsg(){
 	var chat = document.getElementById("chat");
@@ -462,7 +160,6 @@ function moredetails(id,info){
 		alldetails[i].classList.add("gbhide");
 	}
 	
-//	alert(JSON.stringify(info));
     var d = '{"deisity":"1.2mg/cc","color":"bright white","packaging": "new logo","moisture":"<1%"}';
 	d=info;
 	var chat = document.getElementById("m_" +  id);
@@ -552,6 +249,7 @@ function placeorder(data){
 
 	// get order details
 	var final_ordr = [];
+	var flag = 0; // flag for any 0 size order
 	for (var i = 0; i < data.length; i++) {
 		var id = data[i]['id'] ;		
 		if (typeof(order[id]) != 'undefined' && order[id] != null){
@@ -560,19 +258,38 @@ function placeorder(data){
 				"qty"  : document.getElementById('qq'+i).innerHTML,
 				"price"       : "0" 
 		});
+			if(document.getElementById('qq'+i).innerHTML.trim()== "0")
+				flag =1;
 		}		
-	}		
+	}	
+	
+	if(flag ==1){
+		var msg = '<div class="alert alert-warning" style="font-size:12px;"><strong>Warning!</strong> Your order has an item with 0 QTY.</div>';
+		document.getElementById("chat").innerHTML += msg;
+		return true;
+	}
+		
+	// disable buttons
+	document.getElementById("addmore").disabled = true;	
+	document.getElementById("placeorder").disabled = true;	
   
-    var did = 731068;
+    var did = localStorage["did"];
 	var q = "discussion= &order=" + JSON.stringify(final_ordr) + "&visit=&lat=0&long=0&did=" + did + "&agent=0";
 	var req = new XMLHttpRequest();
 	req.onreadystatechange = function() {
 		if (req.readyState == 4 && req.status == 200) {
-			alert(req.responseText);
+			
 			//if(req.responseText.length < 15)
 			if(req.responseText.trim()== "Success"){
-				document.getElementById('mainbody').innerHTML = "<p style='font-size:38px;color:#4CAF50;text-align:center;margin-top:200px;'>Success</p><br><p class='text-muted' style='line-height:1.0;text-align:center'><small>Meeting record saved!!</small></p>";
-								
+				document.getElementById("addmore").classList.add('gbhide');
+				document.getElementById("placeorder").classList.add('gbhide');
+				
+				var txt = "<p style='font-size:38px;color:#4CAF50;text-align:center;margin-top:200px;'>Success</p><br><p class='text-muted' style='line-height:1.0;text-align:center'><small>Your Order is saved!!</small></p>";
+				
+				txt += '<div class="choices" style="text-align:center">';
+				txt += "<button class='btn order' onclick='TrackOrder();'>Track Order</button><button class='btn order' onclick='GoHome();'>Home</button></div>";
+				
+				document.getElementById('mainbody').innerHTML = txt;	
 				}
 			else	
 				alert(req.responseText);
