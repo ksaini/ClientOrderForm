@@ -229,7 +229,7 @@ document.getElementById("phead").innerHTML = "<b>Select Quantity</b>";
 			msg += "<div class='col-xs-1 product' >" + data[i]['id'] + "</div>";
 			msg += "<div class='col-xs-2 code' id='ii"+i+"' >" + data[i]['code'] + "</div>";
 			msg += "<div class='col-xs-5 product' >" + data[i]['name'] + "</div>";
-			msg += "<div class='col-xs-2 details' id='qq"+i+"' contenteditable=true style='background-color:#FDE3A7;height:20px;font-size:12px;text-align:center;'>0</div>";
+			msg += "<div class='col-xs-2 details onlynumber' id='qq"+i+"' contenteditable=true   onclick='onlyNum(this);' style='background-color:#FDE3A7;height:20px;font-size:12px;text-align:center;'>0</div>";
 			msg += "<div class='col-xs-1 product' style='text-align:center;' >" + data[i]['unit'] + "</div>";
 			msg += "<div class='col-xs-1 product' style='text-align:center;color:red;' onclick= removeItem("+id+") ><i class='fa fa-trash' aria-hidden='true'></i></div>";
 			msg += "</div>";
@@ -292,7 +292,8 @@ function placeorder(data){
 				document.getElementById('mainbody').innerHTML = txt;	
 				}
 			else	
-				alert(req.responseText);
+				//alert(req.responseText);
+				alert("Error Saving data");
 			}
 		
 		};
@@ -302,6 +303,15 @@ function placeorder(data){
 		req.send(q);
   
   
+}
+
+function onlyNum(e){
+$(".onlynumber").on("keypress keyup blur",function (event) {    
+           $(this).val($(this).val().replace(/[^\d].+/, ""));
+            if ((event.which < 48 || event.which > 57)) {
+                event.preventDefault();
+            }
+        });
 }
 </script>
 

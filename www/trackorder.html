@@ -75,7 +75,10 @@
 	document.getElementById("chat").innerHTML = "";
 	var did = localStorage["did"];
 	
-	function custom(data){
+	function custom(data,p){
+		if(p==152)
+			location.reload();
+			
 		data_dispatched = data;
 		showDispatch(data);
 	}
@@ -102,8 +105,9 @@
 	return ordr;
  }
 	
-	function errHndlr(){
-	
+	function errHndlr(msg,p){
+		if(p==152)
+			location.reload();
 	}
 	
 	function formatDateY(dt){
@@ -177,6 +181,8 @@ function showStats(s){
 		return "<div class='text-muted' style='font-size:8px;text-align:center;'><i class='fa fa-gear fa-spin' style='font-size:14px;color:#1BA39C;'></i></div>";
 	else if(s==1)
 		return "<div class='text-muted' style='font-size:8px;text-align:center;'>READY</div>";	
+	else if(s==11)
+		return "<div class='text-muted' style='font-size:8px;text-align:center;'><u>COMPLETE</u></div>";		
 	else 
 		return "<div class='text-muted' style='font-size:8px;text-align:center;'>"+s+"</div>";		
 }	
@@ -185,7 +191,7 @@ function getOH(data){
 
 	for (var i = 0; i < data.length; i++) {
 		if(data[i]['ordr'].trim().length > 2){
-			ordr_history[data[i]['id']] = [data[i]['mdate'],data[i]['cnf_dt'], data[i]['rsvd_dt'],data[i]['dispatch_dt'],data[i]['dispatch_details']];
+			ordr_history[data[i]['id']] = [data[i]['mdate'],data[i]['cnf_dt'], data[i]['rsvd_dt'],data[i]['dispatch_dt'],data[i]['dispatch_details'],data[i]['comment']];
 		}
 	}
 }
@@ -196,7 +202,7 @@ function ordrHistory(id,status){
 	msg += "<div style='background-color:white;margin-top:7px;margin-bottom:10px;'>"; 
     msg +=  "<div class='chat-body1 clearfix text-muted col-xs-12' ><span class='oh col-xs-3'></span><span class='oh col-xs-3'></span><span class='oh col-xs-3'></span>    <span class='oh col-xs-3'></span></div>";
 	msg += "<div class='chat-body1 clearfix text-muted col-xs-12 timeline-horizontal'><span class='oh_tl col-xs-3'><i class='fa fa-check-circle' style='color:green'></i></span>";
-	if(status==10){
+	if(status>=10){
 	msg += "<span class='oh_tl col-xs-3'><i class='fa fa-check-circle' style='color:green'></i></span>";
 	msg += "<span class='oh_tl col-xs-3'><i class='fa fa-check-circle' style='color:green'></i></span>";
 	msg += "<span class='oh_tl_last col-xs-3'><i class='fa fa-check-circle' style='color:green'></i></span>";
@@ -221,7 +227,7 @@ function ordrHistory(id,status){
 	msg += "<div class='chat-body1 clearfix text-muted col-xs-12'><span class='oh col-xs-3'>RECEIVED</span><span class='oh col-xs-3'>CONFIRMED</span><span class='oh col-xs-3'>RESERVED</span>    <span class='oh col-xs-3'>DISPATCHED</span></div>";
 	
 	msg += 	"<div class='chat-body1 clearfix text-muted col-xs-12'><span class='oh col-xs-3'>" +formatDateY(ordr_history[id][0]) + "</span>";
-	if(status ==10){
+	if(status >=10){
     msg += "<span class='oh col-xs-3'>" + formatDateY(ordr_history[id][1]) + "</span>";
 	msg += "<span class='oh col-xs-3'>" + formatDateY(ordr_history[id][2]) + "</span>";
 	msg += "<span class='oh col-xs-3'>" + formatDateY(ordr_history[id][3]) + "</span>";
@@ -246,7 +252,7 @@ function ordrHistory(id,status){
 	msg += "</div>";
 	 
 	 msg += "<br></div><br><br>";
-	if(status==10){
+	if(status>=10){
 	var dd = {};
 	try{
 		dd = JSON.parse(ordr_history[id][4]);
@@ -270,10 +276,10 @@ function ordrHistory(id,status){
 		msg += "<div class='col-xs-4 details'>"+ getdetails(dd,'driver') +"</div>";
 		
 		msg += "<div class='row' style='margin-left:4px;margin-right:4px;padding-top:30px;'><div class='col-xs-8'>";
-		msg += "<textarea class='form-control' style='font-size:10px;' rows='2' id='comment' placeholder='Enter your Feedback...'></textarea></div>";
+		msg += "<textarea class='form-control' style='font-size:10px;' rows='2' id='comment"+id+"' placeholder='Enter your Feedback...'>"+ordr_history[id][5]+"</textarea></div>";
 		msg += "<div class='col-xs-1'></div>";
 		msg += "<div class='col-xs-3'>";
-		msg += "<br><span class=' markread'>Mark Received</span></div>";
+		msg += "<br><button class='btn btn-sm markread' onclick='savenote("+id+");'>Mark Received</button></div>";
 	msg += "</div>";
 		
     }
@@ -295,6 +301,13 @@ function showOrdrDetails(id) {
 	}
 	var element = document.getElementById("oh_"+id);
     element.classList.remove("gbhide");
+}
+
+function savenote(id){
+	var comment =  document.getElementById("comment"+id).value;
+	var sql = "UPDATE t_meeting_tbl set comment='"+comment + "' , status=11 where id="+id;
+	//alert(sql);
+	getData('','',sql,0,0,152);
 }
 </script>
 
