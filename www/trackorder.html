@@ -74,6 +74,7 @@
 	var ordr_history = {};
 	document.getElementById("chat").innerHTML = "";
 	var did = localStorage["did"];
+
 	
 	function custom(data,p){
 		if(p==152)
@@ -86,6 +87,9 @@
 	function getDispatchedOrder(){
 		//getData('','',"SELECT m.id,m.did,d.firmname,m.discussion,m.ordr, m.mdate, a.name,m.status,  m.cnf_dt,m.rsvd_dt,m.dispatch_dt, m.dispatch_details from t_meeting_tbl m, t_dealer_tbl d, t_agent_tbl a where d.did = m.did and d.agentid = a.id  order by m.mdate desc LIMIT 20 ;",0,0,101);
 		getData('','',"__!dealer_orders_01,"+ localStorage["did"],0,0,101);
+		
+		// keep pinging every 5 min
+    setTimeout(function(){ getDispatchedOrder(); }, 300000);
 	}
 	
 
@@ -174,15 +178,17 @@ document.getElementById("phead").innerHTML = "<b>Track Orders</b>";
 
 function showStats(s){
 	if(s==10)
-		return "<div class='text-muted' style='font-size:8px;text-align:center;'><i class='fa fa-truck fa-flip-horizontal' style='font-size:16px;color:#1BA39C;'></i></div>";
+		return "<div class='text-muted' style='font-size:8px;text-align:center;'>DISPATCHED</div>";
 	else if(s==0)
 		return "<div class='text-muted' style='font-size:8px;text-align:center;'>RECEIVED</div>";
 	else if(s==1)
-		return "<div class='text-muted' style='font-size:8px;text-align:center;'><i class='fa fa-gear fa-spin' style='font-size:14px;color:#1BA39C;'></i></div>";
-	else if(s==1)
+		return "<div class='text-muted' style='font-size:8px;text-align:center;'>PROCESSING</div>";
+	else if(s==2)
 		return "<div class='text-muted' style='font-size:8px;text-align:center;'>READY</div>";	
 	else if(s==11)
-		return "<div class='text-muted' style='font-size:8px;text-align:center;'><u>COMPLETE</u></div>";		
+		return "<div class='text-muted' style='font-size:8px;text-align:center;color:green'><b>COMPLETE</b></div>";
+	else if(s==-1)
+		return "<div class='text-muted' style='font-size:8px;text-align:center;color:red'>CANCELLED</div>";		
 	else 
 		return "<div class='text-muted' style='font-size:8px;text-align:center;'>"+s+"</div>";		
 }	
