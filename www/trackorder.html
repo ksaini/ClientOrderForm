@@ -85,7 +85,7 @@
 	}
 	
 	function getDispatchedOrder(){
-		//getData('','',"SELECT m.id,m.did,d.firmname,m.discussion,m.ordr, m.mdate, a.name,m.status,  m.cnf_dt,m.rsvd_dt,m.dispatch_dt, m.dispatch_details from t_meeting_tbl m, t_dealer_tbl d, t_agent_tbl a where d.did = m.did and d.agentid = a.id  order by m.mdate desc LIMIT 20 ;",0,0,101);
+		
 		getData('','',"__!dealer_orders_01,"+ localStorage["did"],0,0,101);
 		
 		// keep pinging every 5 min
